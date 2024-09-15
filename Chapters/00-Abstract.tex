@@ -1,16 +1,18 @@
 \thispagestyle{plain} % Page style without header and footer
-\pdfbookmark[1]{摘要}{摘要} % Add entry to PDF
-\chapter*{摘要} % Chapter* to appear without numeration
-\blindtext
+\pdfbookmark[1]{概述}{概述} % Add entry to PDF
+\chapter*{概述} % Chapter* to appear without numeration
+\label{cp:abstract}
 
-\keywordscn{Keyword A, Keyword B, Keyword C.}
+本实验报告使用由\textbf{于景一}制作的\LaTeX{}模板完成。关于此模板的信息，您可以前往\href{https://github.com/jstar0/LaTeXTemplate/}{GitHub模板仓库}具体了解。\footnote{或您可直接搜索GitHub账号\textit{@jstar0}了解更多}\footnote{您请注意，本模板基于LPPL v1.3c分发，本项目在原模板\href{https://github.com/joseareia/ipleiria-thesis}{Polytechnic University of Leiria: LaTeX Thesis Template}的基础上进行了合法地大量二改，包括但不限于自定义风格、中文化支持、样式重定义、功能增加等。}本文章使用的是“实验报告”模板。\footnote{模板提供两种样式，一种为学术论文样式，另一种为实验报告样式，具体区别请检查GitHub仓库上的两个分支。}\\
 
-%\blankpage
+本实验报告是\textit{系统开发工具基础课程}的第二次实验报告，主要关于\textbf{掌握Shell的基本用法}\textit{，主要讨论各个发行版、数据管道、简单的Shell脚本、Shell内置的工具}，学习使用Shell工具\textbf{进行数据整理}，尝试并熟练\textbf{Vim的使用}，总结实战经验，记录心得体会。\\
 
-\pdfbookmark[1]{Abstract}{abstract} % Add entry to PDF
-\chapter*{Abstract} % Chapter* to appear without numeration
-\blindtext
+本实验报告的仓库地址为 \href{https://github.com/jstar0/ToolBasics2}{ToolBasics2 by jstar0}。\\
 
-\keywordsen{Keyword A, Keyword B, Keyword C.}
+在\textbf{Shell的基本用法上}，首先\textit{对各个发行版的Shell进行分析比对}，主要包括\texttt{Bash, Zsh}等，并分析其\textit{工作原理与交互模式}，了解主要的\textit{Shell内置工具}，并\textit{学习数据管道的使用}，主要是\texttt{|, >, >>, <}等，最后\textit{了解Shell脚本语法}，并以\textit{系统运维为主题编写一个简单的Shell脚本}。
 
-%\blankpage
+在\textbf{数据整理}方面，首先\textit{了解其基本概念}，尔后，学习常用的\textit{数据处理工具}，最后学习基本的\textit{正则表达式}，并\textit{尝试与Shell管道组合使用}。\\
+
+在\textbf{Vim的使用}方面，包括\textit{Vim的哲学及其类似TUI编辑器的介绍}，\textit{了解并熟悉Vim的基本操作}，完成\texttt{vimtutor}.\\
+
+\note{知识之海是无边无际的，只是尽力游弋，就已倍感费时费力，然而学习的过程是美好的。本次实验在Shell和Vim方面的粗浅研究，仅可窥得其冰山一角。本文十分惭愧地呈现了我在实验中对两个领域的浅薄了解，如有谬误还请批评斧正。}

@@ -1,0 +1,87 @@
+\chapter{数据整理}
+\label{cp:dataclean}
+
+\section{概述}
+
+本部分致力于练习\textbf{数据整理}。\\
+
+数据量很大的情况下，如何高效地\textit{对数据进行清理、排序、去重、提取关键信息成为了不可忽视的挑战}。Shell 作为系统中操作文件和数据的核心工具，具备强大的数据处理能力。通过\textbf{内置命令和管道机制，Shell 能够灵活应对各种数据整理任务}。我们主要探究 grep、awk、sed、sort 和 uniq 等工具，以实现数据清洗。
+
+\section{数据筛选}
+
+\subsection{grep命令}
+
+\textbf{grep 是用于数据筛选的首选工具。}能够根据给定的模式（通常是正则表达式）从文件或数据流中提取匹配的行。支持多种选项，如 \texttt{-i} 用于忽略大小写，\texttt{-v} 用于反向匹配，\texttt{-r} 则可以递归地搜索目录。一个使用 grep 筛选包含“error”关键字的日志文件的例子，见代码\ref{listing:grep}。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+grep "error" /var/log/syslog
+    \end{minted}
+    \caption{使用grep筛选日志文件}
+    \label{listing:grep}
+\end{longlisting}
+
+\subsection{sed命令}
+
+\textbf{sed 则是用于文本处理的强大工具，适合执行替换、删除、插入等操作。}与 grep 不同，sed 可以直接修改文件中的内容，例如，将文件中的所有 \texttt{foo} 替换为 \texttt{bar}，见代码\ref{listing:sed}。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+sed 's/foo/bar/g' input.txt
+    \end{minted}
+    \caption{使用sed替换文本}
+    \label{listing:sed}
+\end{longlisting}
+
+\subsection{awk命令}
+
+\textbf{awk 则特别适合处理结构化数据，它能够基于字段操作文本，例如根据某一列的值筛选、打印或统计结果。}代码\ref{listing:awk}展示了如何使用 awk 输出文件的第二列内容。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+awk '{print $2}' data.txt
+    \end{minted}
+    \caption{使用awk输出第二列内容}
+    \label{listing:awk}
+\end{longlisting}
+
+\section{数据的排序与去重}
+
+\subsection{sort命令}
+
+\textbf{sort 命令可以根据字典序或数值大小对数据进行排序，且能够根据指定字段进行排序。}代码\ref{listing:sort}展示了如何按照文件的第三列进行数值排序。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+sort -k 3n data.txt
+    \end{minted}
+    \caption{使用sort按第三列进行数值排序}
+    \label{listing:sort}
+\end{longlisting}
+
+\texttt{sort} 还可以与 \texttt{uniq} 命令配合使用，\textbf{用于去重和统计}。\texttt{uniq} 应该在排序后使用，只能处理相邻的重复项。代码\ref{listing:sortuniq}展示了如何使用 \texttt{sort} 和 \texttt{uniq} 去除重复行。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+sort data.txt | uniq
+    \end{minted}
+    \caption{使用sort和uniq去除重复行}
+    \label{listing:sortuniq}
+\end{longlisting}
+
+此外，\texttt{uniq} 还提供了 \texttt{-c} 选项，还可以返回重复的次数并输出统计结果。
+
+\section{Shell中的正则表达式*}
+
+此部分由于需要正则表达式的基础知识，仅作简单介绍。\textbf{正则表达式是一种用于描述字符串模式的工具，常用于文本处理和匹配。}Shell 中的正则表达式主要用于 \texttt{grep, sed, awk} 等工具中，用于匹配和处理文本。例如，\texttt{.*} 表示匹配任意字符任意次数，\texttt{[0-9]+} 表示匹配一个或多个数字。详细的正则表达式语法和用法需要参考相关资料。\\
+
+给出一个示例，从日志文件提取所有IP地址，见代码\ref{listing:regex}。
+
+\begin{longlisting}
+    \begin{minted}{bash}
+grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' /var/log/syslog
+# 其中，-E 表示启用扩展正则表达式，-o 表示只输出匹配的部分
+    \end{minted}
+    \caption{使用正则表达式提取IP地址}
+    \label{listing:regex}
+\end{longlisting}
